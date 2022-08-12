@@ -26,9 +26,9 @@ public class CommandController {
     public OutgoingMessage processMessage(@Payload Message message) {
         log.info("Processing message {}", message);
         OutgoingMessage outgoingMessage = new OutgoingMessage();
-        if(message.getContent() != null) {
+        if (message.getContent() != null) {
             commandService.addLog(message);
-            outgoingMessage.setAnswer("Good");
+            outgoingMessage.setAnswer("Content added!");
         } else {
             outgoingMessage.setAnswer(commandService.getLogs(message.getSessionId()));
         }

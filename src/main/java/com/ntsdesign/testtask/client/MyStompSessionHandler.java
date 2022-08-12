@@ -1,6 +1,5 @@
 package com.ntsdesign.testtask.client;
 
-import com.ntsdesign.testtask.model.Message;
 import com.ntsdesign.testtask.model.OutgoingMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.simp.stomp.StompCommand;
@@ -34,7 +33,7 @@ public class MyStompSessionHandler extends StompSessionHandlerAdapter {
     @Override
     public void handleFrame(StompHeaders headers, Object payload) {
         OutgoingMessage outgoingMessage = (OutgoingMessage) payload;
-        System.out.println("Received: \n" + outgoingMessage);
+        log.info("Received: {}", outgoingMessage.getAnswer());
 
     }
 }

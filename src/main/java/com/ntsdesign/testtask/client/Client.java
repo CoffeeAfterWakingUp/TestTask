@@ -9,6 +9,7 @@ import org.springframework.web.socket.client.WebSocketClient;
 import org.springframework.web.socket.client.standard.StandardWebSocketClient;
 import org.springframework.web.socket.messaging.WebSocketStompClient;
 
+import java.time.LocalDateTime;
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
 
@@ -32,17 +33,18 @@ public class Client {
         while (true) {
             System.out.println("Command: ");
             String command = scanner.next();
-            if(command.equals("logs")) {
+            if (command.equals("logs")) {
                 session.send("/app/chat", new Message(command, session.getSessionId()));
                 log.info("Message sent to websocket server");
-            } else if(command.equals("addLog")) {
+            } else if (command.equals("addLog")) {
                 System.out.println("Content: ");
                 String content = scanner.next();
-                session.send("/app/chat", new Message(command, content, session.getSessionId()));
+                session.send("/app/chat", new Message(command, content, session.getSessionId(), LocalDateTime.now().toString()));
                 log.info("Message sent to websocket server");
             } else {
                 System.out.println("Please try another command!");
             }
+            Thread.sleep(2000);
         }
 
     }

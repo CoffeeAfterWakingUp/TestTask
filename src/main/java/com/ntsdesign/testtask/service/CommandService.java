@@ -7,5 +7,6 @@ import java.util.List;
 public interface CommandService {
 
     void addLog(Message message);
+
     List<Message> getLogs(String sessionId);
 }

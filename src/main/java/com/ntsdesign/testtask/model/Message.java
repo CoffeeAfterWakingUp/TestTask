@@ -1,12 +1,12 @@
 package com.ntsdesign.testtask.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.time.LocalDateTime;
-
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Message {
@@ -15,10 +15,10 @@ public class Message {
     private String sessionId;
     private String requestTime;
 
-    public Message(String content, String sessionId, LocalDateTime requestTime) {
+    public Message(String content, String sessionId, String requestTime) {
         this.content = content;
         this.sessionId = sessionId;
-        this.requestTime = requestTime.toString();
+        this.requestTime = requestTime;
     }
 
     public Message(String command, String sessionId) {
@@ -26,12 +26,12 @@ public class Message {
         this.sessionId = sessionId;
     }
 
-    public Message(String command, String content, String sessionId) {
-        this.command = command;
-        this.content = content;
-        this.sessionId = sessionId;
-        this.requestTime = LocalDateTime.now().toString();
+    @Override
+    public String toString() {
+        return "Message{" +
+                "content='" + content + '\'' +
+                ", sessionId='" + sessionId + '\'' +
+                ", requestTime='" + requestTime + '\'' +
+                '}';
     }
-
-
 }
